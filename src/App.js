@@ -2,8 +2,23 @@ import React, { useState } from "react";
 import shortid from "shortid";
 import Form from "./Form";
 import List from "./List";
+import { Box } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyle = makeStyles({
+  back: {
+    backgroundColor: '#aaa',
+    padding: '30px',
+    marginTop: '30px'
+  },
+  center: {
+    textAlign: 'center'
+  }
+})
 
 const App = () => {
+
+  const classes = useStyle();
 
   const [todos, setTodos] = useState([
     {
@@ -57,9 +72,11 @@ const App = () => {
 
   return (
     <>
-      <h1>Todo App</h1>
-      <Form addTodos={addTodos} />
-      <List todos={todos} changeStyle={changeStyle} deleteTodo={deleteTodo} />
+      <Box className={classes.back}>
+        <h1 className={classes.center}>Todo App</h1>
+        <Form addTodos={addTodos} />
+        <List todos={todos} changeStyle={changeStyle} deleteTodo={deleteTodo} />
+      </Box>
     </>
   )
 }
