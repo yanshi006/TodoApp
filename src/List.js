@@ -10,14 +10,14 @@ const useStyle = makeStyles({
   }
 })
 
-const List = ({todos, changeStyle,deleteTodo}) => {
+const List = ({todos}) => {
 
   const classes = useStyle();
 
   return (
     <ul className={classes.back}>
       {
-        todos.map(todo => (<Item key={todo.id} id={todo.id} content={todo.content} isDone={todo.isDone} changeStyle={changeStyle} deleteTodo={deleteTodo} />))
+        todos.map(todo => (<Item key={todo.id} id={todo.id} content={todo.content} isDone={todo.isDone} />))
       }
     </ul>
   )

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button } from "@material-ui/core";
+import { AppContext } from "./AppContext";
 
 const useStyle = makeStyles({
   button: {
@@ -12,18 +13,20 @@ const useStyle = makeStyles({
   }
 })
 
-const Item = ({ id, content, isDone, changeStyle, deleteTodo }) => {
+const Item = ({ id, content, isDone }) => {
 
   const classes = useStyle();
+
+  const [del, chgSty] = useContext(AppContext);
 
   return (
     <Box m={1}>
       <li>
-        <input type='checkbox' onChange={() => { changeStyle(id) }} />
+        <input type='checkbox' onChange={() => { chgSty(id) }} />
         <span style={
           { textDecoration: isDone ? 'line-through red' : 'none' }
         }>{content}</span>
-        <Button variant='outlined' size='small' className={classes.button} type='submit' onClick={() => deleteTodo(id)}>delete</Button>
+        <Button variant='outlined' size='small' className={classes.button} type='submit' onClick={() => del(id)}>delete</Button>
       </li>
     </Box>
   )
